@@ -16,6 +16,15 @@ pipeline{
         sh 'mvn test' //testing the script 
       }
       }
+    stage("Build & SonarQube analysis") {
+            agent any
+            steps {
+              withSonarQubeEnv('sonar-ci') {
+                sh 'java -version'
+                sh 'mvn clean package sonar:sonar'
+              }
+            }
+          }
     
   }
 }
