@@ -25,12 +25,12 @@ pipeline{
      {
      steps{
       rtUpload (
-         serverId: 'ARTIFACTORY_SERVER',
+         serverId: 'jfrog-art',
             spec: '''{
                  "files": [
             {
               "pattern": "target/*.jar",
-              "target": "art-doc-dev-loc"
+              "target": "maven-project"
             }
          ]
     }''',
@@ -40,11 +40,11 @@ pipeline{
    {
      steps {
        rtDownload (
-                         serverId: 'ARTIFACTORY_SERVER',
+                         serverId: 'jfrog-art',
                      spec: '''{
                              "files": [
                                       {
-                                      "pattern": "art-doc-dev-loc/my-app-1.0-SNAPSHOT.jar",
+                                      "pattern": "maven-project/*.jar",
                                       "target": "bazinga/"
                                     }
                                 ]
